@@ -1,0 +1,14 @@
+host: 0.0.0.0
+port: 8000
+mysql:
+  host: 127.0.0.1
+  username: root
+  password: 123456
+  database: auth
+  max-idle-connections: 20
+  max-open-connections: 100
+  max-connection-life-time: 60000000
+  logger:
+    log-level: 1 # silence
+    slow-threshold: 1 # second
+    ignore-record-not-found-error: true

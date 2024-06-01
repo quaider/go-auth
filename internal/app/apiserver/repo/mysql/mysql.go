@@ -31,7 +31,7 @@ var (
 )
 
 // GetMySqlFactory create mysql factory with the given config.
-func GetMySqlFactory(opts *option.MySqlOption) (repo.Factory, error) {
+func GetMySqlFactory(opts *option.MySqlOptions) (repo.Factory, error) {
 	if opts == nil && mysqlRepos == nil {
 		return nil, fmt.Errorf("failed to get mysql store fatory: mysql options is nil")
 	}
