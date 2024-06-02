@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go-auth/internal/app/apiserver/repo"
 	"go-auth/internal/app/apiserver/repo/mysql"
+	rdb2 "go-auth/pkg/rdb"
 )
 
 type apiServer struct {
@@ -32,6 +33,9 @@ func (server *apiServer) prepareToRun() {
 	}
 
 	repo.SetClient(sqlFactory)
+
+	// 初始化 redis
+	rdb2.NewRdbCli(server.config.Redis)
 }
 
 func (server *apiServer) Run() error {

@@ -6,9 +6,16 @@ mysql:
   password: 123456
   database: auth
   max-idle-connections: 20
+  max-connections-idle-time: 600 # 10m
   max-open-connections: 100
-  max-connection-life-time: 60000000
+  max-connection-life-time: 1800 # 30m
   logger:
     log-level: 1 # silence
     slow-threshold: 1 # second
     ignore-record-not-found-error: true
+redis:
+  addrs:
+    - "127.0.0.1:6379"
+  password: 12345678
+  database: 0
+

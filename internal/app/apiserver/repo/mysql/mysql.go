@@ -12,7 +12,7 @@ type dataset struct {
 	db *gorm.DB
 }
 
-func (ds *dataset) Users() repo.UserRepo {
+func (ds *dataset) User() repo.UserRepo {
 	return newUserRepo(ds)
 }
 

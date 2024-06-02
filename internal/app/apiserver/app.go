@@ -3,6 +3,7 @@ package apiserver
 import (
 	"go-auth/internal/app/pkg/option"
 	"go-auth/pkg/app"
+	"go-auth/pkg/rdb"
 )
 
 func NewApp() *app.App {
@@ -26,7 +27,8 @@ func run(config *Config) app.Starter {
 var _ app.Config = (*Config)(nil)
 
 type Config struct {
-	Host         string               `json:"host" mapstructure:"host"`
-	Port         int                  `json:"port" mapstructure:"port"`
-	MysqlOptions *option.MySqlOptions `json:"mysql" mapstructure:"mysql"`
+	Host         string               `json:"host"     mapstructure:"host"`
+	Port         int                  `json:"port"     mapstructure:"port"`
+	MysqlOptions *option.MySqlOptions `json:"mysql"    mapstructure:"mysql"`
+	Redis        *rdb.RedisOption     `json:"redis"    mapstructure:"redis"`
 }

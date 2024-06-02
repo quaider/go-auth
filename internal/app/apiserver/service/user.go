@@ -21,6 +21,6 @@ func NewUserService() UserService {
 
 // List 返回用户列表
 func (u userService) List(ctx context.Context) (*model.UserList, error) {
-	list := repo.Client().Users().List()
+	list := repo.Client().User().List()
 	return &list, nil
 }

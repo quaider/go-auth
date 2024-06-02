@@ -13,14 +13,15 @@ import (
 
 // Options defines options for mysql database.
 type Options struct {
-	Host                  string
-	Username              string
-	Password              string
-	Database              string
-	MaxIdleConnections    int
-	MaxOpenConnections    int
-	MaxConnectionLifeTime time.Duration
-	Logger                struct {
+	Host                   string
+	Username               string
+	Password               string
+	Database               string
+	MaxIdleConnections     int
+	MaxConnectionsIdleTime time.Duration
+	MaxOpenConnections     int
+	MaxConnectionLifeTime  time.Duration
+	Logger                 struct {
 		LogLevel                  logger.LogLevel
 		SlowThreshold             time.Duration
 		IgnoreRecordNotFoundError bool
@@ -63,14 +64,17 @@ func New(opts *Options) (*gorm.DB, error) {
 		return nil, err
 	}
 
-	// SetMaxOpenConns sets the maximum number of open connections to the database.
+	// 设置最大打开连接数
 	sqlDB.SetMaxOpenConns(opts.MaxOpenConnections)
 
-	// SetConnMaxLifetime sets the maximum amount of time a connection may be reused.
+	// 设置连接的最大生存时间
 	sqlDB.SetConnMaxLifetime(opts.MaxConnectionLifeTime)
 
-	// SetMaxIdleConns sets the maximum number of connections in the idle connection pool.
+	// 设置最大空闲连接数
 	sqlDB.SetMaxIdleConns(opts.MaxIdleConnections)
+
+	// 设置空闲连接的最大存活时间
+	sqlDB.SetConnMaxIdleTime(opts.MaxConnectionsIdleTime)
 
 	return db, nil
 }
